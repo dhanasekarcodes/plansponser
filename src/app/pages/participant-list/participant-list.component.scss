@@ -1,0 +1,48 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+::ng-deep {
+  ng2-smart-table {
+    table {
+     
+
+      /* headers */
+      tr.ng2-smart-titles th {
+        a {
+          font-weight: bold !important;
+          color: #2373F0;
+        }
+
+        background-color: #2373F0;
+        a {
+          color: #2373F0;
+        }
+        a.sort.desc::after, a.sort.asc::after {
+          // arrow colour
+          border-bottom-color: nb-theme(color-basic-100);
+        }
+      }
+
+
+    }
+
+    
+  }
+}
+
+:host ::ng-deep tr .ng2-smart-actions{ display: flex; }
+
+:host ::ng-deep nbng2-st-tbody-custom {display: flex;}
+
+:host ::ng-deep ng2-st-tbody-edit-delete a.ng2-smart-action {display: inline-block !important;}
+:host ::ng-deep ng2-st-tbody-create-cancel a.ng2-smart-action {display: inline-block !important;}
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+}
