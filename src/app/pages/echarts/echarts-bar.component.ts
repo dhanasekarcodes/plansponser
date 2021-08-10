@@ -4,7 +4,7 @@ import { NbThemeService } from '@nebular/theme';
 @Component({
   selector: 'ngx-echarts-bar',
   template: `
-    <div echarts [options]="options" class="echart"></div>
+    <div echarts [options]="options" class="echart" (click)="chartPieSelected($event)"></div>
   `,
 })
 export class EchartsBarComponent implements AfterViewInit, OnDestroy {
@@ -93,5 +93,10 @@ export class EchartsBarComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
+  }
+
+  chartPieSelected($event){
+    console.log("Pie event--->", $event);
+
   }
 }

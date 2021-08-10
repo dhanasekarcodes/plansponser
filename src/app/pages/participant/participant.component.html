@@ -1,42 +1,96 @@
 <div class="row">
-    <div class="col-md-12">
-      <nb-card status="primary" class="inline-form-card">
-        <nb-card-header>Plan and Products for Dhana</nb-card-header>
-     
-      </nb-card>
-    </div>
+  <div class="col-md-12">
+    <nb-card status="success" class="inline-form-card">
+      <nb-card-header>Products and Investment details for {{phName}}</nb-card-header>
+    </nb-card>
   </div>
+</div>
+
+<div class="row">
+  <div id="my-div" class="col-md-12">
+    <ng-container *ngFor="let item of goalList;">
+    <nb-card status="primary">
+      <nb-card-header>{{item.goalName}}</nb-card-header>
+      <nb-card-body class="example-items-col">
+        
+          <div style="padding-top: 1%;">
+            <span style="font-weight: bolder;color: black;">{{item.goalName}} Products</span>
+          </div>
+          
+          <nb-select #product status="success" fullWidth="true" multiple placeholder="Products" [(selected)]="selectedItem">
+            <nb-option *ngFor="let productItem of item.products" value="productItem"> {{ productItem }} </nb-option>
+          </nb-select>
+  
+          <div style="padding-top: 1%;">
+            <span style="font-weight: bolder;color: black;">Investments</span>
+          </div>
+          <nb-select status="success" fullWidth="true" multiple placeholder="Investments">
+            <nb-option #nbOption *ngFor="let investItem of investList" value="{{investItem}}" (click)="investClick(nbOption, item.goalName)"> {{ investItem }} </nb-option>
+          </nb-select>
+          <div>
+            
+            <div class="container" id="rcorners2" style="padding-top: 1%;padding-bottom: 1%;text-align: center;background-color: rgb(182, 245, 221);">
+              <div style="vertical-align:middle">
+                <span style="font-weight: bolder;color: black;">Allocations(%)</span>
+              </div>
+            </div>
+            <div style="padding-top: 1%;">
+            <form>
+              <ng-container *ngFor="let investitemtext of item.selectedInvest;">
+                <div class="form-group row">
+                  <label for="inestname{{investitemtext}}" class="label col-sm-3 col-form-label">{{investitemtext}}</label>
+                  <div class="col-sm-3">
+                    <input type="text" nbInput fullWidth id="inestname{{investitemtext}}" placeholder="%">
+                  </div>
+                </div>
+              </ng-container>
+             
+              <div class="container" id="rcorners3" >
+                <div>
+                  <button type="button" nbButton status="primary">Edit</button>
+                </div>
+                <div style="padding-left: 2%;">
+                  <button type="button" nbButton status="info" (click)="onClick(item.goalName)" outline>Delete</button>
+                </div>
+              </div>
+              
+            </form>
+            </div>
+          </div>
+        
+      </nb-card-body>
+    </nb-card>
+  </ng-container>
+  </div>
+</div>
+
+<ng-container *ngIf="chartShow">
   <div class="row">
-    <div class="col-lg-6">
-      <nb-card>
-        <nb-card-header>Goal Details</nb-card-header>
+    <div class="col-lg-12">
+      <nb-card accent="success">
+        <nb-card-header>Allocation Details</nb-card-header>
         <nb-card-body>
-          <ngx-echarts-pie [data]="pieData"></ngx-echarts-pie>
+          <ngx-echarts-pie [data]="pieData" (chartClick)="chartPieSelected($event)"></ngx-echarts-pie>
         </nb-card-body>
       </nb-card>
     </div>
-    <div class="col-lg-6">
-      <nb-card>
-        <nb-card-header>Plan Details</nb-card-header>
+   
+    </div>
+</ng-container>
+<ng-container *ngIf="!chartShow">
+  <div class="row">
+    <div class="col-lg-12">
+      <nb-card accent="success">
+        <nb-card-header>Allocation Details</nb-card-header>
         <nb-card-body>
-          <ngx-echarts-bar [data]="data"></ngx-echarts-bar>
+          <ngx-echarts-pie [data]="pieData" (chartClick)="chartPieSelected($event)"></ngx-echarts-pie>
         </nb-card-body>
       </nb-card>
     </div>
-    <div class="col-lg-6">
-      <nb-card>
-        <nb-card-header>Products Details</nb-card-header>
-        <nb-card-body>
-            <ngx-echarts-bar [data]="data1"></ngx-echarts-bar>
-        </nb-card-body>
-      </nb-card>
-    </div> 
-    <div class="col-lg-6">
-      <nb-card>
-        <nb-card-header>Investment Details</nb-card-header>
-        <nb-card-body>
-            <ngx-echarts-pie [data]="pieData1"></ngx-echarts-pie>
-        </nb-card-body>
-      </nb-card>
+   
     </div>
-    </div>
+</ng-container>
+
+ 
+
+    

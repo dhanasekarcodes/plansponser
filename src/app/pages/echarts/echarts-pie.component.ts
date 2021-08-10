@@ -1,14 +1,15 @@
-import { AfterViewInit, Component, OnDestroy, Input } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-echarts-pie',
   template: `
-    <div echarts [options]="options" class="echart"></div>
+    <div echarts [options]="options" class="echart" (chartClick)="chartPieSelected($event)"></div>
   `,
 })
 export class EchartsPieComponent implements AfterViewInit, OnDestroy {
   @Input() data:any={};
+  @Output() chartClick = new EventEmitter();
   options: any = {};
   themeSubscription: any;
 
@@ -82,5 +83,9 @@ export class EchartsPieComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
+  }
+
+  chartPieSelected($event){
+    this.chartClick.emit($event);
   }
 }

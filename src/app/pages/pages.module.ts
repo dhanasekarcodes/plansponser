@@ -6,7 +6,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ReportComponent } from './report/report.component';
-import { NbCardModule, NbInputModule, NbButtonModule } from '@nebular/theme';
+import { NbCardModule, NbInputModule, NbButtonModule, NbSpinnerModule, NbSelectModule } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { EchartsLineComponent } from './echarts/echarts-line.component';
@@ -28,6 +28,8 @@ import { ParticipantComponent } from './participant/participant.component';
     NbInputModule,
     NbButtonModule,
     Ng2SmartTableModule,
+    NbSpinnerModule,
+    NbSelectModule,
   ],
   declarations: [
     PagesComponent,

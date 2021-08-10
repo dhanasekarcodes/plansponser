@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  
+  loading = false;
 
   constructor(private router: Router) {}
 
@@ -16,8 +16,14 @@ export class DashboardComponent {
 
 
   onSubmit(){
+    this.loading = true;
+    setTimeout(() => {
+      
+      this.router.navigateByUrl('/pages/reports');
+
+    }, 3000);
     
-    this.router.navigateByUrl('/pages/reports');
+    
   }
   
 }

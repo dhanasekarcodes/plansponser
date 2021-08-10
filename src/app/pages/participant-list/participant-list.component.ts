@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
+import { phData } from '../../models/plan-sponser-data';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class ParticipantListComponent implements OnInit {
 
   public displayedColumns = ['name', 'age', 'goals', 'view'];
+  phData_ = phData;
   
         
   settings = {
@@ -28,10 +30,6 @@ export class ParticipantListComponent implements OnInit {
       },
       firstName: {
         title: 'First Name',
-        type: 'string',
-      },
-      lastName: {
-        title: 'Last Name',
         type: 'string',
       },
       age: {
@@ -86,6 +84,30 @@ export class ParticipantListComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+
+    let phDataKey: Array<string> = Object.keys(this.phData_); 
+    this.data = [];
+    phDataKey.forEach(item => {
+      let obj = {
+        id: 1,
+        firstName: '',
+        lastName: '',
+        age: '',
+        goals: '',
+        longgoals: '',
+        view: '>>>'
+      };
+      obj.id = Number.parseInt(item);
+      obj.firstName = this.phData_[item].name;
+      obj.age = this.phData_[item].age;
+      obj.goals = this.phData_[item].shortterm.join(" | ");
+      //obj.goals = obj.goals.replace(","," | ");
+      obj.longgoals = this.phData_[item].longterm.join(" | ");
+      obj.view = ">>>"
+      this.data.push(obj);
+    });
+      
+    
     this.source = this.data;
    
   }
