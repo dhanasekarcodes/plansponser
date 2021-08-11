@@ -1,8 +1,9 @@
+
 <div class="row col-md-6 offset-md-3">
   <div class="col-md-12">
-    <div *ngIf="!loading">
-    <nb-card status="success">
-      <nb-card-header>Employee data</nb-card-header>
+    <div *ngIf="!loading" style="padding-top: 15%;">
+    <nb-card status="primary">
+      <nb-card-header>Please upload the employee data</nb-card-header>
       <nb-card-body>
         <form>
           <div class="form-group row">
@@ -10,25 +11,30 @@
               <input type="file" nbInput fullWidth placeholder="File">
             </div>
           </div>
-              <button (click)="onSubmit()" type="button" nbButton status="primary" >Submit</button>
+              
           </form>
       </nb-card-body>
       <nb-card-footer>
+        <div style="text-align: center;">
+          <button (click)="onSubmit()" type="button" nbButton status="primary" >Submit</button>
+        </div>
       </nb-card-footer>
     </nb-card>
   </div>
 
-  <div *ngIf="loading">
-    <nb-card status="success" [nbSpinner]="loading" 
+  <div *ngIf="loading" style="padding-top: 15%;">
+    <nb-card status="primary" [nbSpinner]="loading" 
     nbSpinnerSize="giant" 
-    nbSpinnerMessage="Data processing in TensorFlow" 
+    nbSpinnerMessage="Please wait while we process the data" 
      nbSpinnerStatus="warning">
-      <nb-card-header>Please wait</nb-card-header>
+      
       <nb-card-body>
-      <div style="padding-top: 10%;"></div>
+      <div style="padding-top: 10%;">
+        &nbsp;
+      </div>
+      <nb-card-footer></nb-card-footer>
       </nb-card-body>
-      <nb-card-footer>
-      </nb-card-footer>
+      
     </nb-card>
   </div>
 

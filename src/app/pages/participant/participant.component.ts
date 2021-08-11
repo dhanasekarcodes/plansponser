@@ -25,6 +25,7 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
   chartShow:boolean;
   selectedItem:any;
   @ViewChild('myname') selectEle; 
+  selectedProducts:any;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.queryParams.subscribe(params => {
@@ -46,19 +47,37 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
     Object.keys(this.phSelectedObject.goals).forEach(item => {
       let goalListObj = {
         goalName:"",
-        products:[],
-        selectedInvest:[]
+        mode:"edit",
+        products:{
+          productList: ["retirement","travel"],
+          investList:[]
+        },
+        investments:[],
+        selectedInvest:["Vanguard Institutional Index Fund Institutional (VINIX)","Money Market Fund (MMF000001)"],
+        selectedProducts:["403(B) Defined Contribution Retirement plan","Traditional IRA plan"]
       };
       goalListObj.goalName = item;
-      goalListObj.products = this.phSelectedObject.goals[item].products;
+      goalListObj.products.productList = this.phSelectedObject.goals[item].products;
+
+      goalListObj.products.productList.forEach(prodname => {
+        
+        let obj = this.phSelectedObject.goals[item];
+        goalListObj.products[prodname] = obj[prodname];
+      });
+
+      //goalListObj.products[item] = this.phSelectedObject.goals[item].products;
+      //goalListObj.investments = this.phSelectedObject.goals[item].
+      console.log(">>>>>>>>>>>AAAA>>>>>>>>>>>>---",goalListObj);
       this.goalList.push(goalListObj);
     });
+
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>---",this.goalList);
 
     this.investList = ["Vanguard Institutional Index Fund Institutional (VINIX)","Vanguard Total International Stock Index Fund Institutional (VTSNX)",
                         "ALIBABA LTD ADR ISIN#US01609W1027 (BABA)",
                         "Money Market Fund (MMF000001)"];
 
-
+                        this.loadChart();
     
   }
 
@@ -68,6 +87,22 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
 
   onSubmit(){
     this.router.navigateByUrl('/pages/participant-list');
+  }
+
+  changeproduct(data){
+    console.log("---------change data--->",data);
+  }
+
+  onedit(data){
+    this.goalList.forEach( (item1, index) => {
+      //if(item1.goalName === goal) this.goalList.splice(index,1);
+      if(item1.mode == "edit"){
+        item1.mode = "edit";
+      }else{
+        item1.mode = "edit";
+      }
+      
+    });
   }
 
   onClick(goal){
@@ -108,14 +143,16 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
   loadChart(){
 
     this.pieData = {
-      label: ['Retirement', 'Education savings', 'Health Savings', 'Buy a home', 'Loan payment','Buy a car'],
+      label: ['Vanguard Institutional Index Fund Institutional (VINIX)', 
+              'Vanguard Total International Stock Index Fund Institutional (VTSNX)', 
+              'ALIBABA LTD ADR ISIN#US01609W1027 (BABA)', 
+              'invest1',
+              'John Hancock Disciplined Value Fund Class R5 (JDVVX)'],
       data: [
-        { value: 4, name: 'Retirement' },
-        { value: 6, name: 'Education savings' },
-        { value: 3, name: 'Health Savings' },
-        { value: 4, name: 'Buy a home' },
-        { value: 6, name: 'Loan payment' },
-        { value: 6, name: 'Buy a car' },
+        { value: 4, name: 'Vanguard Institutional Index Fund Institutional (VINIX)' },
+        { value: 6, name: 'Vanguard Total International Stock Index Fund Institutional (VTSNX)' },
+        { value: 3, name: 'ALIBABA LTD ADR ISIN#US01609W1027 (BABA)' },
+        { value: 3, name: 'John Hancock Disciplined Value Fund Class R5 (JDVVX)' }
       ]
     };
 
@@ -125,8 +162,9 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
       listVal = listVal.concat(item.selectedInvest);
 
     });
-    this.pieData.label = [];
-    this.pieData.data = [];
+    //this.pieData.label = [];
+    //this.pieData.data = [];
+/*
     console.log("Chart data",listVal);
     listVal.forEach(item => {
       console.log("{{{",this.pieData.label.filter(el => el == item).length);
@@ -139,10 +177,11 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
         };
         obj.name = item;
         obj.value = count.length;
-        this.pieData.data.push(obj);
+        //this.pieData.data.push(obj);
       }
       console.log("{{{---",this.pieData);
     });
+    */
 
     if(this.chartShow){
         this.chartShow = false;
@@ -214,14 +253,15 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
     };
 
     this.pieData = {
-      label: ['Retirement', 'Education savings', 'Health Savings', 'Buy a home', 'Loan payment','Buy a car'],
+      label: ['Vanguard Institutional Index Fund Institutional (VINIX)', 
+              'Cohen & Steers Institutional Realty Shares (CSRIX)', 
+                'MFS International Value Fund Class R6 (MINJX)', 
+                  'ALIBABA LTD ADR ISIN#US01609W1027 (BABA)'],
       data: [
-        { value: 4, name: 'Retirement' },
-        { value: 6, name: 'Education savings' },
-        { value: 3, name: 'Health Savings' },
-        { value: 4, name: 'Buy a home' },
-        { value: 6, name: 'Loan payment' },
-        { value: 6, name: 'Buy a car' },
+        { value: 4, name: 'Vanguard Institutional Index Fund Institutional (VINIX)' },
+        { value: 6, name: 'Cohen & Steers Institutional Realty Shares (CSRIX)' },
+        { value: 3, name: 'MFS International Value Fund Class R6 (MINJX)' },
+        { value: 4, name: 'ALIBABA LTD ADR ISIN#US01609W1027 (BABA)' },
       ]
     };
 

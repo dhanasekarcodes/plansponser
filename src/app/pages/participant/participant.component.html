@@ -10,21 +10,77 @@
   <div id="my-div" class="col-md-12">
     <ng-container *ngFor="let item of goalList;">
     <nb-card status="primary">
-      <nb-card-header>{{item.goalName}}</nb-card-header>
+      
+      <nb-card-header>
+        <div style="display: flex;">
+          <div>{{item.goalName}}</div>
+          
+          <div style="padding-left: 2%;margin-left: auto;">
+            <button type="button" nbButton status="info" (click)="onedit('val')">Edit</button>
+            &nbsp;<button type="button" nbButton status="info" (click)="onClick(item.goalName)">Delete</button>
+          </div>
+        </div>
+      </nb-card-header>
+     
+      <ng-container *ngIf="item.mode == 'view'">
+        <nb-card-body class="">
+          <div style="flex-direction: column;"> 
+          <ng-container *ngFor="let productItem of item.products.productList">
+            
+            <div class="demo-items">
+              <nb-checkbox checked status="primary" nbTooltip="Product" nbTooltipStatus="success" nbTooltipPlacement="right">{{productItem}}</nb-checkbox>
+            </div>
+            
+            <div class="demo-items" style="padding-left: 15%;">
+              <ng-container *ngFor="let investItem of item.products[productItem];index as i">
+                <div style="padding-top: 1%;margin: 0 -0.5rem;display: flex;flex-direction: column;">
+                  <ng-container *ngIf="i == 0">
+                    <nb-checkbox checked #investName status="success" nbTooltip="Investment" nbTooltipStatus="warning" nbTooltipPlacement="left">{{investItem}}</nb-checkbox>
+                    <input style="width:max-content;" #textname maxlength="3" type="text" nbInput placeholder="%" value="45">
+                  </ng-container>
+                  <ng-container *ngIf="i != 0">
+                    <nb-checkbox #investName status="success" nbTooltip="Investment" nbTooltipStatus="warning" nbTooltipPlacement="left">{{investItem}}</nb-checkbox>
+                    <input style="width:max-content;" #textname maxlength="3" type="text" nbInput placeholder="%">
+                  </ng-container>
+                  
+                  
+                </div>
+               
+              </ng-container>
+            </div>
+
+            
+           
+            
+         
+          </ng-container> </div>
+
+
+         
+          
+          
+         
+      </nb-card-body>
+      <div style="padding-left: 2%;text-align: center;">
+        <button type="button" nbButton status="success" (click)="onedit('val')">Update</button>
+      </div>
+      <div style="padding-left: 2%;text-align: center;">&nbsp;</div>
+      </ng-container>
+      <ng-container *ngIf="item.mode == 'edit'">
       <nb-card-body class="example-items-col">
         
           <div style="padding-top: 1%;">
             <span style="font-weight: bolder;color: black;">{{item.goalName}} Products</span>
           </div>
           
-          <nb-select #product status="success" fullWidth="true" multiple placeholder="Products" [(selected)]="selectedItem">
-            <nb-option *ngFor="let productItem of item.products" value="productItem"> {{ productItem }} </nb-option>
+          <nb-select #product status="success" [selected]="item.selectedProducts" fullWidth="true" multiple placeholder="Products" (selectedChange)="changeproduct($event)">
+            <nb-option *ngFor="let productItem of item.products.productList" value="{{productItem}}"> {{ productItem }} </nb-option>
           </nb-select>
   
           <div style="padding-top: 1%;">
             <span style="font-weight: bolder;color: black;">Investments</span>
           </div>
-          <nb-select status="success" fullWidth="true" multiple placeholder="Investments">
+          <nb-select status="success" [selected]="item.selectedInvest" fullWidth="true" multiple placeholder="Investments">
             <nb-option #nbOption *ngFor="let investItem of investList" value="{{investItem}}" (click)="investClick(nbOption, item.goalName)"> {{ investItem }} </nb-option>
           </nb-select>
           <div>
@@ -45,13 +101,12 @@
                 </div>
               </ng-container>
              
-              <div class="container" id="rcorners3" >
-                <div>
-                  <button type="button" nbButton status="primary">Edit</button>
+              <div class="form-group row">
+                <div class="offset-sm-3 col-sm-3">
+                  <button type="submit" nbButton status="primary">Save</button>
+                  
                 </div>
-                <div style="padding-left: 2%;">
-                  <button type="button" nbButton status="info" (click)="onClick(item.goalName)" outline>Delete</button>
-                </div>
+               
               </div>
               
             </form>
@@ -59,6 +114,7 @@
           </div>
         
       </nb-card-body>
+      </ng-container>
     </nb-card>
   </ng-container>
   </div>
@@ -91,6 +147,16 @@
     </div>
 </ng-container>
 
- 
+<div class="row">
+  <div class="col-md-12">
+    <nb-card status="success" class="inline-form-card">
+      <nb-card-header style="align-content: center;">
+        <div style="text-align: center;">
+          <a [routerLink]="['/pages/success']">Proceed >>>></a>
+        </div>
+      </nb-card-header>
+    </nb-card>
+  </div>
+</div>
 
     

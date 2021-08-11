@@ -21,7 +21,7 @@ export class DashboardComponent {
       
       this.router.navigateByUrl('/pages/reports');
 
-    }, 3000);
+    }, 8000);
     
     
   }

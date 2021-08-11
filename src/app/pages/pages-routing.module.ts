@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportComponent } from './report/report.component';
 import { ParticipantListComponent } from './participant-list/participant-list.component';
 import { ParticipantComponent } from './participant/participant.component';
+import { SuccessComponent } from './success/success.component';
 
 const routes: Routes = [{
   path: '',
@@ -26,6 +27,10 @@ const routes: Routes = [{
     {
       path: 'participant',
       component: ParticipantComponent,
+    },
+    {
+      path: 'success',
+      component: SuccessComponent,
     },
     {
       path: '',

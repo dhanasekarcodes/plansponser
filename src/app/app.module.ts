@@ -20,10 +20,11 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { LandComponent } from './land/land.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LandComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

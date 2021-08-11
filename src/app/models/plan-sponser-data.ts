@@ -11,11 +11,37 @@ export const phFullData = {
         income: 25000,
         goals:{
             "Retirement":{
+                term: "long",
+                products:["403(B) Defined Contribution Retirement plan","457 Retriement plan","401(K) Retriement plan", "Traditional IRA plan","After tax Annuties(ATA)"],
+                "403(B) Defined Contribution Retirement plan": 
+                        ["Vanguard Institutional Index Fund Institutional (VINIX)"],
+                "457 Retriement plan":
+                        ["Vanguard Total International Stock Index Fund Institutional (VTSNX)"],
+                "401(K) Retriement plan":
+                        ["ALIBABA LTD ADR ISIN#US01609W1027 (BABA)"],
+                "Traditional IRA plan":
+                        ["Traditional IRA plan"],
+                "Roth IRA":
+                        ["U.S.DOLLARS CURRENCY (USD999997)"],
+                "SEP IRA":
+                        ["MFS International Value Fund Class R6 (MINJX)"],
+                "After tax Annuties(ATA)":
+                        ["John Hancock Disciplined Value Fund Class R5 (JDVVX)",
+                            "Goldman Sachs Small Cap Value Fund Institutional Class (GSSIX)",
+                            "Cohen & Steers Institutional Realty Shares (CSRIX)"]
+            },
+            "Buy a car":{
                 term: "short",
-                products:["403(B) Defined Contribution Retirement plan","457 Retriement plan","401(K) Retriement plan", "Traditional IRA plan","After tax Annuties(ATA)"]
+                products:["Self driected brokerage account","Managed brokerage account", "Mutual fund account"],
+                "Self driected brokerage account": 
+                        ["invest1","invest2","invest1"],
+                "Managed brokerage account":
+                        ["invest1"],
+                "Mutual fund account":
+                        ["invest1"]
             }
         }
-    },
+    },  
     "102":{
             name: "James Smith",
             age: 28,

@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-12">
       <nb-card status="primary" class="inline-form-card">
-        <nb-card-header>Plan Sponser Engine Analytics Data</nb-card-header>
+        <nb-card-header>Employee's Analytics Data</nb-card-header>
         <nb-card-body>
            
                 <div style="float: left;">
-                    <span>About Engine AI details</span>
+                    <span>About the employee's data are providing the distributions of the Goals, Risk, etc,. with grouping.</span>
                 </div>
             
         </nb-card-body>
@@ -20,7 +20,7 @@
   <div class="row">
     <div class="col-lg-6">
       <nb-card>
-        <nb-card-header>Goal group</nb-card-header>
+        <nb-card-header>Goal Distribution</nb-card-header>
         <nb-card-body>
           <ngx-echarts-pie [data]="pieData"></ngx-echarts-pie>
         </nb-card-body>
@@ -28,7 +28,15 @@
     </div>
     <div class="col-lg-6">
       <nb-card>
-        <nb-card-header>Age Group</nb-card-header>
+        <nb-card-header>Risk Tolerance</nb-card-header>
+        <nb-card-body>
+            <ngx-echarts-pie [data]="pieData1"></ngx-echarts-pie>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>Age</nb-card-header>
         <nb-card-body>
           <ngx-echarts-bar [data]="data"></ngx-echarts-bar>
         </nb-card-body>
@@ -36,18 +44,11 @@
     </div>
     <div class="col-lg-6">
       <nb-card>
-        <nb-card-header>Salary Froup</nb-card-header>
+        <nb-card-header>Income</nb-card-header>
         <nb-card-body>
             <ngx-echarts-bar [data]="data1"></ngx-echarts-bar>
         </nb-card-body>
       </nb-card>
     </div> 
-    <div class="col-lg-6">
-      <nb-card>
-        <nb-card-header>Risk Tolerance Group</nb-card-header>
-        <nb-card-body>
-            <ngx-echarts-pie [data]="pieData1"></ngx-echarts-pie>
-        </nb-card-body>
-      </nb-card>
-    </div>
+
     </div>
