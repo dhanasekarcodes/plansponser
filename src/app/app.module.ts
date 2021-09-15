@@ -11,6 +11,7 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SessionStoreService } from './service/session-store.service';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -19,17 +20,24 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbCardModule,
+  NbInputModule,
+  NbCheckboxModule
 } from '@nebular/theme';
-import { LandComponent } from './land/land.component';
+
+
 
 
 @NgModule({
-  declarations: [AppComponent, LandComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    NbCardModule,
+    NbInputModule,
+    NbCheckboxModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -41,6 +49,9 @@ import { LandComponent } from './land/land.component';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+  ],
+  providers:[
+    SessionStoreService
   ],
   bootstrap: [AppComponent],
 })

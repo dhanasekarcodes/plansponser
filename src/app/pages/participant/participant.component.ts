@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { phData, phFullData } from '../../models/plan-sponser-data';
+import { SessionStoreService } from '../../service/session-store.service';
 
 @Component({
   selector: 'participant',
@@ -26,8 +27,9 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
   selectedItem:any;
   @ViewChild('myname') selectEle; 
   selectedProducts:any;
+  role:string;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { 
+  constructor(private router: Router, private sessionStoreService: SessionStoreService, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.queryParams.subscribe(params => {
       this.phid = params["id"];
     });
@@ -35,6 +37,7 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.phName = this.phDataOnj[this.phid].name;
+    this.role = this.sessionStoreService.getRole();
     this.loadStaticData();
     //load goalList
     let phObject = this.phDataOnj[this.phid];
@@ -48,16 +51,18 @@ export class ParticipantComponent implements OnInit, AfterViewInit {
       let goalListObj = {
         goalName:"",
         mode:"edit",
+        term:"",
         products:{
           productList: ["retirement","travel"],
           investList:[]
         },
         investments:[],
         selectedInvest:["Vanguard Institutional Index Fund Institutional (VINIX)","Money Market Fund (MMF000001)"],
-        selectedProducts:["403(B) Defined Contribution Retirement plan","Traditional IRA plan"]
+        selectedProducts:["403(B) Defined Contribution Retirement plan","Traditional IRA plan", "Self driected brokerage account"]
       };
       goalListObj.goalName = item;
       goalListObj.products.productList = this.phSelectedObject.goals[item].products;
+      goalListObj.term = this.phSelectedObject.goals[item].term;
 
       goalListObj.products.productList.forEach(prodname => {
         

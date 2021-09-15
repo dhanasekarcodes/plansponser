@@ -31,7 +31,7 @@ export class EchartsPieComponent implements AfterViewInit, OnDestroy {
         },
         legend: {
           orient: 'vertical',
-          left: 'left',
+//          bottom: 'bottom',
           data: ['Retirement', 'Education savings', 'Health Savings', 'Buy a home', 'Loan payment','Buy a car'],
           textStyle: {
             color: echarts.textColor,
@@ -39,9 +39,9 @@ export class EchartsPieComponent implements AfterViewInit, OnDestroy {
         },
         series: [
           {
-            name: 'Goals',
+            name: '',
             type: 'pie',
-            radius: '80%',
+            radius: '50%',
             center: ['50%', '50%'],
             data: [
               { value: 4, name: 'Retirement' },
@@ -59,18 +59,11 @@ export class EchartsPieComponent implements AfterViewInit, OnDestroy {
               },
             },
             label: {
-              normal: {
-                textStyle: {
-                  color: echarts.textColor,
-                },
-              },
+              show: false
             },
             labelLine: {
-              normal: {
-                lineStyle: {
-                  color: echarts.axisLineColor,
-                },
-              },
+              show: false,
+           
             },
           },
         ],
@@ -78,7 +71,13 @@ export class EchartsPieComponent implements AfterViewInit, OnDestroy {
     });
 
     this.options.legend.data=this.data.label;
+    this.options.legend[this.data.align]=this.data.align;
+    if(this.data.radius){
+      this.options.series[0].radius = this.data.radius;
+    }
+    //this.options.legend.position= 'right';
     this.options.series[0].data=this.data.data;
+
   }
 
   ngOnDestroy(): void {

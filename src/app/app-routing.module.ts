@@ -8,7 +8,8 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
-import { LandComponent } from './land/land.component';
+
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,8 @@ export const routes: Routes = [
   },
   {
     path: 'land',
-    component: LandComponent
+    loadChildren: () => import('./profile-page/profile-page.module')
+      .then(m => m.ProfilePageModule),
   },
   {
     path: 'auth',

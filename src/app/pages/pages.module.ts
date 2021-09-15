@@ -16,6 +16,7 @@ import { ParticipantListComponent } from './participant-list/participant-list.co
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ParticipantComponent } from './participant/participant.component';
 import { SuccessComponent } from './success/success.component';
+import { LoginPageComponent } from './login-page/login-page.component';
   
 
 @NgModule({
@@ -43,7 +44,8 @@ import { SuccessComponent } from './success/success.component';
     EchartsBarComponent,
     ParticipantListComponent,
     ParticipantComponent,
-    SuccessComponent
+    SuccessComponent,
+    LoginPageComponent
     ],
 })
 export class PagesModule {

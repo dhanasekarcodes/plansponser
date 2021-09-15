@@ -5,6 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+import { SessionStoreService } from '../../../service/session-store.service';
+
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -35,15 +37,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private sessionStoreService: SessionStoreService) {
   }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-
+/*
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = users.user);
+
+     */
+
+
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -59,6 +66,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+      let role = this.sessionStoreService.getRole();
+      let name_ = this.sessionStoreService.name;
+
+      let user = { name: 'User', picture: 'assets/images/kitten-corporate.png' };
+      user.name = name_;
+      this.user = user;
   }
 
   ngOnDestroy() {

@@ -18,13 +18,13 @@ export class ReportComponent implements OnInit {
   ngOnInit(): void {
 
     this.data = {
-      label:['age 25-35', 'age 35-45', 'age 45-50', 'age >50'],
+      label:['25-35', '35-45', '45-50', '>50'],
       data:[4, 6, 3, 2],
       color: '#EE6B5E'
     };
 
     this.data1 = {
-      label:['Salary 30k-40k', 'Salary 30k-40k', 'Salary 30k-40k', 'Salary 30k-40k'],
+      label:['25k-30k', '30k-40k', '40k-50k', '50k-55k'],
       data:[6, 3, 2, 2],
       color: '#30F9EF'
     };
@@ -38,7 +38,9 @@ export class ReportComponent implements OnInit {
         { value: 4, name: 'Buy a home' },
         { value: 6, name: 'Loan payment' },
         { value: 6, name: 'Buy a car' },
-      ]
+      ],
+      align:"left",
+      radius:"80%"
     };
 
     this.pieData1 = {
@@ -47,7 +49,9 @@ export class ReportComponent implements OnInit {
         { value: 4, name: 'Aggressive' },
         { value: 6, name: 'Moderate' },
         { value: 3, name: 'Conservative' }
-      ]
+      ],
+      align:"left",
+      radius:"80%"
     };
  
   }

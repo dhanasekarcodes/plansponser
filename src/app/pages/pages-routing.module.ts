@@ -7,6 +7,7 @@ import { ReportComponent } from './report/report.component';
 import { ParticipantListComponent } from './participant-list/participant-list.component';
 import { ParticipantComponent } from './participant/participant.component';
 import { SuccessComponent } from './success/success.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -15,6 +16,10 @@ const routes: Routes = [{
     {
       path: 'home',
       component: DashboardComponent,
+    },
+    {
+      path: 'login',
+      component: LoginPageComponent,
     },
     {
       path: 'reports',
@@ -34,7 +39,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'home',
+      redirectTo: 'login',
       pathMatch: 'full',
     },
   ],

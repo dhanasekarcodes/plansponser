@@ -1,25 +1,22 @@
-
 <div class="row col-md-6 offset-md-3">
   <div class="col-md-12">
     <div *ngIf="!loading" style="padding-top: 15%;">
-    <nb-card status="primary">
-      <nb-card-header>Please upload the employee data</nb-card-header>
-      <nb-card-body>
-        <form>
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <input type="file" nbInput fullWidth placeholder="File">
-            </div>
+      <div style="text-align: center;padding-bottom: 2%;border-radius: 2%;">
+        <span style="border-radius: 2px;font-weight: bolder;">&nbsp;&nbsp;Please upload the Participant data&nbsp;&nbsp;</span>
+      </div>
+      <form>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <input type="file" nbInput fullWidth placeholder="File">
+            <span style="font-size: smaller;font-weight: lighter;border-radius: 2px;background-color: rgb(243, 247, 215);"><i>File format should *.xls, *.xlsx</i></span>
           </div>
-              
-          </form>
-      </nb-card-body>
-      <nb-card-footer>
-        <div style="text-align: center;">
-          <button (click)="onSubmit()" type="button" nbButton status="primary" >Submit</button>
         </div>
-      </nb-card-footer>
-    </nb-card>
+            
+        </form>
+        <div style="text-align: center;">
+          <button (click)="onSubmit()" type="button" nbButton status="primary">Submit</button>
+        </div>
+        <div style="text-align: center;padding-top: 20%;">&nbsp;</div>
   </div>
 
   <div *ngIf="loading" style="padding-top: 15%;">
@@ -40,3 +37,5 @@
 
   </div>
 </div>
+
+ 

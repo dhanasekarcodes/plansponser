@@ -11,7 +11,7 @@ export const phFullData = {
         income: 25000,
         goals:{
             "Retirement":{
-                term: "long",
+                term: "Long term",
                 products:["403(B) Defined Contribution Retirement plan","457 Retriement plan","401(K) Retriement plan", "Traditional IRA plan","After tax Annuties(ATA)"],
                 "403(B) Defined Contribution Retirement plan": 
                         ["Vanguard Institutional Index Fund Institutional (VINIX)"],
@@ -31,7 +31,7 @@ export const phFullData = {
                             "Cohen & Steers Institutional Realty Shares (CSRIX)"]
             },
             "Buy a car":{
-                term: "short",
+                term: "Short term",
                 products:["Self driected brokerage account","Managed brokerage account", "Mutual fund account"],
                 "Self driected brokerage account": 
                         ["invest1","invest2","invest1"],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionStoreService } from '../../service/session-store.service';
 
 @Component({
   selector: 'success',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuccessComponent implements OnInit {
 
-  constructor() { }
+  role:string;
+
+  constructor(private sessionStoreService: SessionStoreService) { }
 
   ngOnInit(): void {
+
+    this.role = this.sessionStoreService.getRole();
   }
 
 }

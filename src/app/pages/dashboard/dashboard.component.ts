@@ -12,7 +12,9 @@ export class DashboardComponent {
 
   constructor(private router: Router) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    
+  }
 
 
   onSubmit(){
@@ -21,7 +23,7 @@ export class DashboardComponent {
       
       this.router.navigateByUrl('/pages/reports');
 
-    }, 8000);
+    }, 3000);
     
     
   }

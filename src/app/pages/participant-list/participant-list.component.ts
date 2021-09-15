@@ -29,19 +29,23 @@ export class ParticipantListComponent implements OnInit {
         type: 'number',
       },
       firstName: {
-        title: 'First Name',
+        title: 'Name',
         type: 'string',
       },
       age: {
-        title: 'age',
+        title: 'Age',
+        type: 'string',
+      },
+      income: {
+        title: 'Income',
         type: 'string',
       },
       goals: {
-        title: 'Short term Goals',
+        title: 'Short term goals',
         type: 'string',
       },
       longgoals: {
-        title: 'Long term Goals',
+        title: 'Long term goals',
         type: 'string',
       },
       view: {
@@ -93,6 +97,7 @@ export class ParticipantListComponent implements OnInit {
         firstName: '',
         lastName: '',
         age: '',
+        income:'',
         goals: '',
         longgoals: '',
         view: '>>>'
@@ -100,13 +105,14 @@ export class ParticipantListComponent implements OnInit {
       obj.id = Number.parseInt(item);
       obj.firstName = this.phData_[item].name;
       obj.age = this.phData_[item].age;
+      obj.income = this.phData_[item].income;
       obj.goals = this.phData_[item].shortterm.join(" | ");
       //obj.goals = obj.goals.replace(","," | ");
       obj.longgoals = this.phData_[item].longterm.join(" | ");
       obj.view = ">>>"
       this.data.push(obj);
     });
-      
+       
     
     this.source = this.data;
    
